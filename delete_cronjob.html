@@ -1,0 +1,122 @@
+<?php
+	$cron_job = $_GET['cron_job'];
+?>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <meta content="IE=8" http-equiv="X-UA-Compatible" />
+    <script>
+      jQuery.noConflict()
+      ;(function () {})()
+      /**
+       *  Delete
+       */
+      function submit_deleteCronJob() {
+        jQuery('#delete_cron_job_waiting_content').attr(
+          'style',
+          'display:block'
+        )
+        jQuery('#delete_cron_job_waiting_logo').attr('style', 'display:block')
+        var cron_job = '<?php echo $cron_job;?>'.trim()
+        jQuery.ajax({
+          url: '/apps/cronjob/includes/services_cronjob.php',
+          type: 'POST',
+          async: true,
+          contentType: 'application/json',
+          data: JSON.stringify({
+            token: UToken,
+            action: 'deleteCronJob',
+            cronjob: cron_job,
+          }),
+          timeout: 30000,
+          dataType: 'json',
+          success: function (data) {
+            jQuery('#delete_cron_job_waiting_content').attr(
+              'style',
+              'display:none'
+            )
+            jQuery('#delete_cron_job_waiting_logo').attr(
+              'style',
+              'display:none'
+            )
+            if (data.err == 0) {
+              var w = window.top.UNAS.GetWindow('DeleteCronJobWindow')
+              w.ProcessDeleteCronJob()
+              MUI.closeWindow($('DeleteCronJobWindow'))
+            }
+          },
+          error: function (XMLHttpRequest, textStatus, errorThrown) {
+            //alert(textStatus);
+            alert(errorThrown)
+            jQuery('#delete_cron_job_waiting_content').attr(
+              'style',
+              'display:none'
+            )
+            jQuery('#delete_cron_job_waiting_logo').attr(
+              'style',
+              'display:none'
+            )
+          },
+        })
+      }
+    </script>
+  </head>
+  <body>
+    <div id="delete_cron_job_config_page" class="unas_panel_sub">
+      <div
+        id="delete_cron_job_waiting_content"
+        class="unas_loading_modal_sub"
+        style="display: none"
+      ></div>
+      <div
+        id="delete_cron_job_waiting_logo"
+        class="unas_loading"
+        style="display: none"
+      ></div>
+
+      <div class="unas_delete_confirm">
+        <div class="confirm" style="height: 100px">
+          <span>
+            <!-- prettier-ignore -->
+            ##$@cronjob@$##Are you sure you want to delete this cron job?##$@cronjob@$##
+          </span>
+        </div>
+        <div class="unas_footer_sub">
+          <button class="unas_button_sub" onclick="submit_deleteCronJob();">
+            ##$@cronjob@$##Enter##$@cronjob@$##
+          </button>
+          <button
+            class="unas_button_sub"
+            onclick="MUI.closeWindow($('DeleteCronJobWindow'));"
+          >
+            ##$@cronjob@$##Cancel##$@cronjob@$##
+          </button>
+        </div>
+      </div>
+    </div>
+    <script>
+      var rt = document.getElementById('delete_cron_job_config_page')
+      var pageTranslators = window.top.UNAS.CreateNodesTranslators(
+        rt.parentNode
+      )
+      var OnChangeLanguage = function (e) {
+        for (var i = 0; i < pageTranslators.length; i++) {
+          var node = pageTranslators[i].node // original node
+          var p = pageTranslators[i].translateProperty //the attribues need to be translated
+          node[p] = window.top.UNAS._(pageTranslators[i].originalText) //translate
+        }
+      }
+
+      OnChangeLanguage()
+      window.top.UNAS.Event.addEvent('ChangeLanguage', OnChangeLanguage)
+      window.addEventListener(
+        'unload',
+        function (e) {
+          window.top.UNAS.Event.removeEvent('ChangeLanguage', OnChangeLanguage)
+        },
+        false
+      )
+    </script>
+  </body>
+</html>

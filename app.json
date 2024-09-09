@@ -1,0 +1,16 @@
+{
+  "appName": "Cron Job",
+  "appVersion": "6.0.1",
+  "appJS": "app.js",
+  "appIcon": "images/logo.png",
+  "appScreenshot": "shot.png",
+  "appDeveloper": "青城",
+  "appSection": "Setting",
+  "appSize": "1.8M",
+  "appInstalledSize": "2.4M",
+  "appRemovable": "NO",
+  "appTranslationFile": "languages/Translation",
+  "appPackageName": "cronjob-unas",
+  "appDescription": "This is an U-NAS Cron Job App.",
+  "appMobileHTML": ""
+}

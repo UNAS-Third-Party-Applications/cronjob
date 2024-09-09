@@ -1,0 +1,124 @@
+{
+  "UNASTranslation": [
+    {
+      "language": "简体中文",
+      "table": [
+        [
+          "Cron Job",
+          "0",
+          "定时任务"
+        ],
+        [
+          "Add Cron Job",
+          "0",
+          "新增定时任务"
+        ],
+        [
+          "Cron Job",
+          "cronjob",
+          "定时任务"
+        ],
+        [
+          "Cron",
+          "cronjob",
+          "Cron"
+        ],
+        [
+          "Script",
+          "cronjob",
+          "脚本"
+        ],
+        [
+          "Operation",
+          "cronjob",
+          "操 作"
+        ],
+        [
+          "Script File",
+          "cronjob",
+          "脚本文件"
+        ],
+        [
+          "Add",
+          "cronjob",
+          "新增"
+        ],
+        [
+          "Invalid cron expression",
+          "0",
+          "Cron表达式无效"
+        ],
+        [
+          "Invalid Configuration",
+          "0",
+          "配置无效"
+        ],
+        [
+          "Cron job already exists",
+          "0",
+          "定时任务已存在"
+        ],
+        [
+          "Token is empty",
+          "0",
+          "Token为空"
+        ],
+        [
+          "User information not obtained",
+          "0",
+          "未获取到用户信息"
+        ],
+        [
+          "Failed to save cron job",
+          "0",
+          "保存定时任务配置失败"
+        ],
+        [
+          "Script file path must start with '/'",
+          "0",
+          "脚本文件路径必须是以'/'开头的绝对路径"
+        ],
+        [
+          "Script file is not executable",
+          "0",
+          "脚本文件没有可执行权限"
+        ],
+        [
+          "Script file does not exist",
+          "0",
+          "脚本文件不存在"
+        ],
+        [
+          "Invalid cronjob format",
+          "0",
+          "定时任务格式错误"
+        ],
+        [
+          "Edit",
+          "0",
+          "编辑"
+        ],
+        [
+          "Delete",
+          "0",
+          "删除"
+        ],
+        [
+          "Are you sure you want to delete this cron job?",
+          "cronjob",
+          "你确认删除该定时任务吗？"
+        ],
+        [
+          "Enter",
+          "cronjob",
+          "确 定"
+        ],
+        [
+          "Cancel",
+          "cronjob",
+          "取 消"
+        ]
+      ]
+    }
+  ]
+}

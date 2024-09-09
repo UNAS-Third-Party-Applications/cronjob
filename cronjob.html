@@ -1,0 +1,236 @@
+<!--[if IE]>
+  <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN">
+<![endif]-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>U-NAS</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=8" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="/apps/cronjob/css/cronjob.css?v=6.0.1&"
+    />
+    <script>
+      window.top.UNAS.SetAppState('Cron Job', 'active');
+    </script>
+    <script type=text/javascript>
+      jQuery.noConflict();
+      (function () {
+        jQuery('#cron_job_table').mCustomScrollbar({
+          autoHideScrollbar: true,
+          theme: 'minimal-dark',
+        })
+        ListAllCronJobs()
+      })();
+      function ListAllCronJobs() {
+        jQuery('#cronjob_manager_waiting_content').attr(
+          'style',
+          'display:block'
+        )
+        jQuery('#cronjob_manager_waiting_logo').attr('style', 'display:block')
+        jQuery.ajax({
+          url: '/apps/cronjob/includes/services_cronjob.php',
+          type: 'POST',
+          async: true,
+          contentType: 'application/json',
+          data: JSON.stringify({ token: UToken, action: 'listAllCronJobs' }),
+          timeout: 20000,
+          dataType: 'json',
+          success: function (data) {
+            jQuery('#cron_job_list').html('')
+
+            DisplayJobsInTable(data)
+            jQuery('#cronjob_manager_waiting_content').attr(
+              'style',
+              'display:none'
+            )
+            jQuery('#cronjob_manager_waiting_logo').attr(
+              'style',
+              'display:none'
+            )
+          },
+          error: function (XMLHttpRequest, textStatus, errorThrown) {
+            alert(textStatus)
+            jQuery('#cronjob_manager_waiting_content').attr(
+              'style',
+              'display:none'
+            )
+            jQuery('#cronjob_manager_waiting_logo').attr(
+              'style',
+              'display:none'
+            )
+          },
+        })
+      }
+
+      function DisplayJobsInTable(data) {
+        var len = data.length
+        for (var i = 0; i < len; i++) {
+          if(data[i] !== undefined && data[i] !== null && data[i] !== '') {
+            var jobInfo = data[i].split(' /usr/bin/sudo sh ')
+            var tr = ''
+            tr += '<tr>'
+            tr +=
+              '<td width="30%" align="left"><span class="unas_table_text" id="cronjob_cron_' +
+                i +
+              '">' + jobInfo[0] + '</span></td>'
+
+            tr +=
+              '<td width="55%" align="left"><span class="unas_table_text" id="cronjob_script_' +
+              i +
+              '">' + jobInfo[1] + '</span></td>'
+              
+            tr +='<td width="15%" align="center">'+
+              '<a class="unas_icon_edit" onClick="EditCronJob('+"'"+data[i]+"'"+');" title="'+UNAS._("Edit")+'" />'+
+              '<a class="unas_icon_delete" onClick="DeleteCronJob('+"'"+data[i]+"'"+');" title="'+UNAS._("Delete")+'" />'+
+              '</td>'
+            
+            tr += '</tr>'
+            jQuery('#cron_job_list').append(tr)
+          }
+        }
+        jQuery('#cron_job_list tr:even').addClass('tr_even')
+        jQuery('#cron_job_list tr:odd').addClass('tr_odd')
+        jQuery('#cron_job_list tr').mouseover(function () {
+          jQuery(this).removeClass('tr_even tr_odd')
+          jQuery(this).toggleClass('tr_hover')
+        })
+        jQuery('#cron_job_list tr').mouseout(function () {
+          jQuery(this).toggleClass('tr_hover')
+          jQuery(this).removeClass('tr_even tr_odd')
+          jQuery('#cron_job_list tr:even').addClass('tr_even')
+          jQuery('#cron_job_list tr:odd').addClass('tr_odd')
+        })
+      }
+
+      function AddJob() {
+        var AddCronJobWindow = new MUI.Modal({
+          id: 'AddCronJobWindow',
+          title: UNAS._('Add Cron Job'),
+          modal: true,
+          width: 450,
+          height: 320,
+          modalOverlayClose: false,
+          contentURL: '/apps/cronjob/add_cronjob.html?v=6.0.1&'
+        });
+
+        AddCronJobWindow.ProcessAddCronJob = function() {
+          ListAllCronJobs();
+        }
+      }
+
+      function EditCronJob(cron_job){
+        var EditCronJobWindow = new MUI.Modal({
+          id: 'EditCronJobWindow',
+          title: UNAS._('Edit Cron Job'),
+          modal: true,
+          width: 450,
+          height: 320,
+          modalOverlayClose: false,
+          contentURL: '/apps/cronjob/edit_cronjob.html?v=6.0.1&cron_job='+cron_job
+        });
+
+        EditCronJobWindow.ProcessEditCronJob = function(){
+          ListAllCronJobs();
+        }
+      }
+
+      function DeleteCronJob(cron_job){
+        var DeleteCronJobWindow = new MUI.Modal({
+            id: 'DeleteCronJobWindow',
+            title: UNAS._('Delete Reverse Proxy Config'),
+            modal: true,
+            width: 400,
+            height: 130,
+            modalOverlayClose: false,
+            contentURL: '/apps/cronjob/delete_cronjob.html?v=6.0.1&cron_job='+cron_job
+        });
+        DeleteCronJobWindow.ProcessDeleteCronJob = function(){
+          ListAllCronJobs();
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div id="cronjob_main_page" class="cronjob_manager">
+      <div
+        id="cronjob_manager_waiting_content"
+        class="unas_loading_modal"
+        style="display: none"
+      ></div>
+      <div
+        id="cronjob_manager_waiting_logo"
+        class="unas_loading"
+        style="display: none"
+      ></div>
+      <div class="unas_title">
+        <div
+          id="poweroptions_manager_immediately_tab"
+          class="unas_tab_sel"
+          poweroptionsitemtableid="poweroptions_manager_immediately_page"
+        >
+          <span>##$@cronjob@$##Cron Job##$@cronjob@$##</span>
+        </div>
+      </div>
+      <div class="unas_content" style="height: calc(100% - 72px);">
+				<div class="unas-flex" style="justify-content: end;padding: 10px 0px 10px 14px;">
+					<button class="unas_button_content" onclick="AddJob();" style="margin-left:20px;">##$@cronjob@$##Add##$@cronjob@$##</button>
+				</div>
+        <div
+          class="unas_table"
+          style="overflow: auto;height: calc(100% - 46px);"
+        >
+          <table class="unas_table_title">
+            <tr>
+              <th width="30%" align="left">
+                <span class="unas_table_text"
+                  >##$@cronjob@$##Cron##$@cronjob@$##</span
+                >
+              </th>
+              <th width="55%" align="left">
+                <span class="unas_table_text"
+                  >##$@cronjob@$##Script##$@cronjob@$##</span
+                >
+              </th>
+							<th width="15%" align="center">
+								<span class="unas_table_text">##$@cronjob@$##Operation##$@cronjob@$##</span>
+							</th>
+            </tr>
+          </table>
+          <div id="cron_job_table" class="cronjob_table_content">
+            <table class="unas_table_content" id="cron_job_list"></table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript">
+      ;(function () {
+        var rt = document.getElementById('cronjob_main_page')
+        var pageTranslators = window.top.UNAS.CreateNodesTranslators(
+          rt.parentNode
+        )
+        var OnChangeLanguage = function (e) {
+          for (var i = 0; i < pageTranslators.length; i++) {
+            var node = pageTranslators[i].node
+            var p = pageTranslators[i].translateProperty
+            node[p] = window.top.UNAS._(pageTranslators[i].originalText)
+          }
+        }
+        OnChangeLanguage()
+        window.top.UNAS.Event.addEvent('ChangeLanguage', OnChangeLanguage)
+        window.addEventListener(
+          'unload',
+          function (e) {
+            window.top.UNAS.Event.removeEvent(
+              'ChangeLanguage',
+              OnChangeLanguage
+            )
+            window.top.UNAS.SetAppState('Cron Job', 'inactive')
+          },
+          false
+        )
+      })()
+    </script>
+  </body>
+</html>
