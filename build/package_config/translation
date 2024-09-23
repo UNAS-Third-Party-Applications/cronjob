@@ -1,0 +1,54 @@
+﻿{
+    "UNASTranslation": [
+        {
+            "language": "简体中文",
+            "table": [
+                [
+                    "Cron Job",
+                    "0",
+                    "定时任务"
+                ],
+                [
+                    "SystemTools",
+                    "0",
+                    "系统工具"
+                ],
+                [
+                    "This is an U-NAS Cron Job App.",
+                    "0",
+                    "软件包提供了一个定时任务管理服务"
+                ],
+                [
+                    "QingCheng",
+                    "0",
+                    "青城"
+                ]
+            ]
+        },
+        {
+            "language": "한국어",
+            "table": [
+                [
+                    "Cron Job",
+                    "0",
+                    "타이밍작업"
+                ],
+                [
+                    "SystemTools",
+                    "0",
+                    "시스템도구"
+                ],
+                [
+                    "This is an U-NAS Cron Job App.",
+                    "0",
+                    "패키지는타이밍작업관리서비스를제공합니다."
+                ],
+                [
+                    "QingCheng",
+                    "0",
+                    "QingCheng"
+                ]
+            ]
+        }
+    ]
+}
