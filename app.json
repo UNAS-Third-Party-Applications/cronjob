@@ -10,7 +10,7 @@
   "appInstalledSize": "172KB",
   "appRemovable": "YES",
   "appTranslationFile": "languages/Translation",
-  "appPackageName": "cronjob-unas",
+  "appPackageName": "cronjob-ext",
   "appDescription": "This is an U-NAS Cron Job App.",
   "appMobileHTML": ""
 }
