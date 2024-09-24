@@ -9,7 +9,7 @@ jobs:
     strategy:
       matrix:
         platform: [ ubuntu-latest ]
-        zipname: [ alist-ext_config.zip ]
+        zipname: [ cronjob-ext_config.zip ]
     name: Release
     runs-on: ${{ matrix.platform }}
     steps:
