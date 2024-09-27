@@ -20,7 +20,7 @@
         jQuery('#delete_cron_job_waiting_logo').attr('style', 'display:block')
         var cron_job = '<?php echo $cron_job;?>'.trim()
         jQuery.ajax({
-          url: '/apps/cronjob/includes/services_cronjob.php',
+          url: '/apps/cronjob/includes/services.php',
           type: 'POST',
           async: true,
           contentType: 'application/json',

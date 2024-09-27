@@ -31,7 +31,7 @@ CronJobApp.App = function () {
       scrollbars: false,
       resizeLimit: { x: [200, 2000], y: [150, 1500] },
       contentURL: '/apps/cronjob/cronjob.html?v=6.0.1&',
-      require: { css: ['/apps/cronjob/css/cronjob.css'] },
+      require: { css: ['/apps/cronjob/css/index.css'] },
       onBeforeBuild: function () {
         UNAS.SetAppOpenedWindow('Cron Job', 'CronJobAppWindow')
       },

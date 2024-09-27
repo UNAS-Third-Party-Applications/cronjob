@@ -57,7 +57,7 @@
             MUI.closeWindow(parent.document.getElementById('EditCronJobWindow'))
           } else {
             jQuery.ajax({
-              url: '/apps/cronjob/includes/services_cronjob.php',
+              url: '/apps/cronjob/includes/services.php',
               type: 'POST',
               async: true,
               contentType: 'application/json',

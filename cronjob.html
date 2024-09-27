@@ -9,7 +9,7 @@
     <link
       rel="stylesheet"
       type="text/css"
-      href="/apps/cronjob/css/cronjob.css?v=6.0.1&"
+      href="/apps/cronjob/css/index.css?v=6.0.1&"
     />
     <script>
       window.top.UNAS.SetAppState('Cron Job', 'active');
@@ -30,7 +30,7 @@
         )
         jQuery('#cronjob_manager_waiting_logo').attr('style', 'display:block')
         jQuery.ajax({
-          url: '/apps/cronjob/includes/services_cronjob.php',
+          url: '/apps/cronjob/includes/services.php',
           type: 'POST',
           async: true,
           contentType: 'application/json',
