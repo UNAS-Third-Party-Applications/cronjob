@@ -9,11 +9,11 @@ var CronJobApp = CronJobApp || {} //Define CronJob App namespace.
 CronJobApp.App = function () {
   this.id = 'Cron Job'
   this.name = 'Cron Job'
-  this.version = '6.0.1'
+  this.version = '6.0.2'
   this.active = false
-  this.menuIcon = '/apps/cronjob/images/logo.png?v=6.0.1&'
-  this.shortcutIcon = '/apps/cronjob/images/logo.png?v=6.0.1&'
-  this.entryUrl = '/apps/cronjob/cronjob.html?v=6.0.1&'
+  this.menuIcon = '/apps/cronjob/images/logo.png?v=6.0.2&'
+  this.shortcutIcon = '/apps/cronjob/images/logo.png?v=6.0.2&'
+  this.entryUrl = '/apps/cronjob/cronjob.html?v=6.0.2&'
   var self = this
   this.CronJobAppWindow = function () {
     if (UNAS.CheckAppState('Cron Job')) {
@@ -22,7 +22,7 @@ CronJobApp.App = function () {
     self.window = new MUI.Window({
       id: 'CronJobAppWindow',
       title: UNAS._('Cron Job'),
-      icon: '/apps/cronjob/images/logo_small.png?v=6.0.1&',
+      icon: '/apps/cronjob/images/logo_small.png?v=6.0.2&',
       loadMethod: 'xhr',
       width: 750,
       height: 480,
@@ -30,7 +30,7 @@ CronJobApp.App = function () {
       resizable: true,
       scrollbars: false,
       resizeLimit: { x: [200, 2000], y: [150, 1500] },
-      contentURL: '/apps/cronjob/cronjob.html?v=6.0.1&',
+      contentURL: '/apps/cronjob/cronjob.html?v=6.0.2&',
       require: { css: ['/apps/cronjob/css/index.css'] },
       onBeforeBuild: function () {
         UNAS.SetAppOpenedWindow('Cron Job', 'CronJobAppWindow')

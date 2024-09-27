@@ -9,7 +9,7 @@
     <link
       rel="stylesheet"
       type="text/css"
-      href="/apps/cronjob/css/index.css?v=6.0.1&"
+      href="/apps/cronjob/css/index.css?v=6.0.2&"
     />
     <script>
       window.top.UNAS.SetAppState('Cron Job', 'active');
@@ -112,7 +112,7 @@
           width: 450,
           height: 320,
           modalOverlayClose: false,
-          contentURL: '/apps/cronjob/add_cronjob.html?v=6.0.1&'
+          contentURL: '/apps/cronjob/add_cronjob.html?v=6.0.2&'
         });
 
         AddCronJobWindow.ProcessAddCronJob = function() {
@@ -128,7 +128,7 @@
           width: 450,
           height: 320,
           modalOverlayClose: false,
-          contentURL: '/apps/cronjob/edit_cronjob.html?v=6.0.1&cron_job='+cron_job
+          contentURL: '/apps/cronjob/edit_cronjob.html?v=6.0.2&cron_job='+cron_job
         });
 
         EditCronJobWindow.ProcessEditCronJob = function(){
@@ -144,7 +144,7 @@
             width: 400,
             height: 130,
             modalOverlayClose: false,
-            contentURL: '/apps/cronjob/delete_cronjob.html?v=6.0.1&cron_job='+cron_job
+            contentURL: '/apps/cronjob/delete_cronjob.html?v=6.0.2&cron_job='+cron_job
         });
         DeleteCronJobWindow.ProcessDeleteCronJob = function(){
           ListAllCronJobs();
